@@ -1,14 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+
 import Home from "./pages/Home";
-
-function Login() {
-  return <h1> Login Page</h1>;
-}
-
-function Register() {
-  return <h1>Register Page</h1>;
-}
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 export default function App() {
   return (
