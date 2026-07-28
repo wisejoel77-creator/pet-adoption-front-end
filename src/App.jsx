@@ -1,9 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-
-function Home() {
-  return <h1> PawFound Home</h1>;
-}
+import Home from "./pages/Home";
 
 function Login() {
   return <h1> Login Page</h1>;
