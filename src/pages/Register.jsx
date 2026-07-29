@@ -1,24 +1,29 @@
 import { useState } from "react";
+
 function Register() {
-  
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+
   const [formData, setFormData] = useState({
-  name: "",
-  email: "",
-  password: "",
-  confirmPassword: ""
-});
-  function handleChange(event) {
-  setFormData({
-    ...formData,
-    [event.target.name]: event.target.value
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
-}
-  function handleRegister(event) {
+
+  function handleChange(event) {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  async function handleRegister(event) {
     event.preventDefault();
 
-    if (formData.name === "" || formData.email === "" ||
-      formData.password === "" || formData.confirmPassword === ""
+    if (
+      !formData.name || !formData.email ||
+      !formData.password || !formData.confirmPassword
     ) {
       setError("Please fill in all fields.");
       return;
@@ -35,12 +40,39 @@ function Register() {
     }
 
     setError("");
+    setMessage("");
 
-    console.log("Name:", formData.name);
-    console.log("Email:", formData.email);
-    console.log("Password:", formData.password);
+    try {
+      const response = await fetch("http://localhost:5000/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", },
+        body: JSON.stringify({username: formData.name,
+          email: formData.email, password: formData.password,
+          role: "adopter"
+        }),
+      });
 
-    alert("Account created successfully!");
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+       setMessage("Account created successfully!");
+       } else {
+       setError(data.error || data.message || "Registration failed");
+}
+
+      if (response.ok) {
+        setMessage("Account created successfully!");
+
+        setFormData({name: "", email: "",
+          password: "", confirmPassword: "",
+        });
+      } else {
+        setError(data.error || "Registration failed.");
+      }
+    } catch (err) {
+      setError("Unable to connect to the server.");
+    }
   }
 
   return (
@@ -48,42 +80,45 @@ function Register() {
       <h1>Create Account</h1>
 
       <form onSubmit={handleRegister}>
-        <input type="text" placeholder="Enter your name"
-          name="name" value ={formData.name}
-          onChange={handleChange}/>
-
-        <br />
-        <br />
-
-        <input type="email" placeholder="Enter your email"
-          name="email" value ={formData.email}
+        <input type="text" name="name"
+          placeholder="Enter your name"
+          value={formData.name}
           onChange={handleChange}
         />
 
         <br />
         <br />
 
-        <input
-          type="password" placeholder="Enter your password"
-          name="password" value ={formData.password}
-          onChange={handleChange} />
+        <input type="email" name="email"
+          placeholder="Enter your email"
+          value={formData.email}
+          onChange={handleChange}
+        />
 
         <br />
         <br />
 
-        <input
-          type="password" placeholder="Confirm your password"
-          name="confirmPassword" value ={formData.confirmPassword}
-          onChange={handleChange} />
+        <input type="password" name="password"
+          placeholder="Enter your password"
+          value={formData.password}
+          onChange={handleChange}
+        />
 
         <br />
         <br />
 
-        {error && ( <p style={{ color: "red" }}>{error}
-          </p>
-        )}
+        <input type="password" name="confirmPassword"
+          placeholder="Confirm your password"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+        />
 
-        <button type="submit"> Register</button>
+        <br />
+        <br />
+
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        {message && <p style={{ color: "green" }}>{message}</p>}
+        <button type="submit">Register</button>
       </form>
     </div>
   );
