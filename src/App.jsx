@@ -5,6 +5,7 @@ import MyAdoptionRequests from "./components/MyAdoptionRequests";
 import AdminDashboard from "./pages/AdminDashboard";
 import ManageShelters from "./pages/ManageShelters";
 import AdminRequests from "./pages/AdminRequests";
+import ManagePets from "./pages/ManagePets";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -23,6 +24,7 @@ export default function App() {
       <Route path="/admin" element={<AdminDashboard />}/>
       <Route path="/admin/shelters" element={<ManageShelters />}/>
       <Route path="/admin/requests" element={<AdminRequests />} />
+      <Route path="/admin/pets" element={<ManagePets />}/>
     </Routes>
     </>
   );

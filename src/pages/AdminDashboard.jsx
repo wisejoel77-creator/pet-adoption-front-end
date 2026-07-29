@@ -26,12 +26,6 @@ function AdminDashboard() {
           <Link to="/admin/shelters"> <button>Manage Shelters</button> </Link>
         </div>
 
-        <div className="card">
-          <h3> Dashboard Statistics</h3>
-          <p>View system statistics and reports.</p>
-          <Link to="/admin/statistics"> <button>View Statistics</button></Link>
-        </div>
-
       </div>
     </div>
   );
