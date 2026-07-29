@@ -5,6 +5,11 @@ function ManagePets(){
   const [pets, setPets] = useState([]);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const [formData, setFormData] = useState({
+  name: "", species: "", breed: "", age: "",
+  gender: "", status: "", image_url: "", shelter_id: ""});
+
+  const [editingId, setEditingId] = useState(null);
 
   useEffect(()=>{ fetchPets();},[]);
 
@@ -13,14 +18,77 @@ function ManagePets(){
     .then(response=>response.json())
     .then(data=>{ setPets(data);})
     .catch(()=>{setError("Could not load pets");});
-  }
 
+  }
+  function handleChange(e) {setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
+  });
+}
+
+async function savePet() {
+  const token = localStorage.getItem("token");
+
+  const url = editingId
+    ? `http://localhost:5000/pet/${editingId}`
+    : "http://localhost:5000/add-pet";
+  const method = editingId ? "PUT" : "POST";
+
+  try {
+    const response = await fetch(url, {
+      method: method,
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}`,},
+      body: JSON.stringify(formData),});
+    const data = await response.json();
+
+    if (response.ok) {
+
+      setMessage(data.message);
+      setError("");
+      setFormData({ name: "", species: "", breed: "",
+        age: "", gender: "", status: "", image_url: "",
+        shelter_id: ""});
+
+      setEditingId(null);
+
+      fetchPets(); } else {setError(data.Error || "Operation failed");}
+  } catch { setError("Could not connect to server");}
+}
   return(
     <div>
 
       <h1>Manage Pets</h1>
       {message && <p style={{color:"green"}}> {message} </p> }
       {error && <p style={{color:"red"}}> {error}</p>}
+
+      <h2>{editingId ? "Edit Pet" : "Add New Pet"}</h2>
+
+      <input type="text" name="name" placeholder="Name"
+       value={formData.name}onChange={handleChange}/>
+
+      <input type="text" name="species" placeholder="Species"
+       value={formData.species} onChange={handleChange}/>
+
+      <input type="text" name="breed" placeholder="Breed"
+       value={formData.breed}onChange={handleChange}/>
+
+      <input type="number" name="age" placeholder="Age"
+       value={formData.age} onChange={handleChange}/>
+
+      <input type="text" name="gender" placeholder="Gender"
+       value={formData.gender} onChange={handleChange}/>
+
+     <input type="text" name="status" placeholder="Status"
+      value={formData.status} onChange={handleChange}/>
+
+     <input type="text" name="image_url" placeholder="Image URL"
+      value={formData.image_url} onChange={handleChange}/>
+
+    <input type="number" name="shelter_id" placeholder="Shelter ID"
+     value={formData.shelter_id}onChange={handleChange}/>
+
+    <button onClick={savePet}> {editingId ? "Update Pet" : "Add Pet"} </button>
+<hr />
 
       <h2>Existing Pets</h2>
 
