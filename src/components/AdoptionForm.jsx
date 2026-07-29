@@ -1,15 +1,23 @@
 import { useState } from "react";
 
-function AdoptionForm() {
+function AdoptionForm({ onSuccess }) {
 
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    setMessage( `Thank you ${name}! Your adoption request has been submitted.`);
+  async function handleSubmit(event) {
+  event.preventDefault();
+  const token = localStorage.getItem("token");
 
-  }
+  const response = await fetch("http://localhost:5000/adoption-request", {
+    method: "POST",
+    headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`},
+    body: JSON.stringify(formData),
+  });
+
+  const data = await response.json();
+  console.log(data);
+}
 
   return (
     <div>

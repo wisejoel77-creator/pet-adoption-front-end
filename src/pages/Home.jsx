@@ -12,7 +12,7 @@ function Home() {
   const fetchPets = async () => {
     try {
 
-      const response = await fetch( "https://jsonplaceholder.typicode.com/users" );
+      const response = await fetch( "http://localhost:5000/view-all-pets" );
       const data = await response.json();
 
       const formattedPets = data.map((user) => ({

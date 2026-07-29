@@ -6,6 +6,7 @@ function PetDetails() {
 
   const { id } = useParams();
   const [pet, setPet] = useState(null);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
 
@@ -35,8 +36,8 @@ function PetDetails() {
       <p>Breed: {pet.breed}</p>
       <p>Age: {pet.age}</p>
 
-      <button>Adopt Me </button>
-      <AdoptionForm />
+      <button onClick={()=> setShowForm(true)}>Adopt Me </button>
+      {showForm && <AdoptionForm onSuccess={() => setShowForm(false)} />}
 
     </div>
   );
