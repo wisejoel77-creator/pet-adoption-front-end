@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
   
   async function handleLogin(event) {
   event.preventDefault();
@@ -30,7 +32,8 @@ function Login() {
 
     if (response.ok) {
       localStorage.setItem("token", data.access_token);
-      alert("Login successful!");
+      window.dispatchEvent(new Event("auth-change"));
+      navigate("/");
     } else {
       setError(data.Error || "Login failed");
     }

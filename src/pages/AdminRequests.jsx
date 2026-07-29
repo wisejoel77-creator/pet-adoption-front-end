@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function AdminRequests() {
 
@@ -45,6 +46,7 @@ function AdminRequests() {
   return (
     <div>
       <h1>Manage Adoption Requests</h1>
+      <Link to="/admin" className="back-to-dashboard">Go back to Admin Dashboard</Link>
 
       {message &&  <p style={{color:"green"}}> {message}</p>}
       {error && <p style={{color:"red"}}>{error}</p> }
