@@ -11,7 +11,6 @@ function AdminDashboard() {
         <div className="card">
           <h3> Manage Pets</h3>
           <p>Add, edit, and remove pets.</p>
-
           <Link to="/admin/pets"> <button>Manage Pets</button> </Link>
         </div>
 
