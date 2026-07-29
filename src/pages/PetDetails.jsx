@@ -27,6 +27,9 @@ function PetDetails() {
 
   if (!pet) {return <p>Loading pet...</p>;}
 
+  const petNotes = pet.notes || pet.description ||
+    `Meet ${pet.name}, a ${pet.age}-year-old ${pet.breed || pet.species || "pet"} looking for a loving forever home.`;
+
   return (
     <div className="pet-details">
 
@@ -39,6 +42,10 @@ function PetDetails() {
       <h1>{pet.name}</h1>
       <p>Breed: {pet.breed}</p>
       <p>Age: {pet.age}</p>
+      <section className="pet-notes">
+        <h2>About {pet.name}</h2>
+        <p>{petNotes}</p>
+      </section>
 
       <button className="adopt-button" onClick={()=> setShowForm(true)}>Adopt Me 🐾</button>
       <button onClick={() => navigate(-1)}> Back</button>

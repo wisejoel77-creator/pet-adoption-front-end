@@ -151,6 +151,8 @@ form input { display: block; margin-bottom: 0.85rem; }
 .pet-details { max-width: 680px; text-align: center; }
 .pet-detail-image { display: block; width: min(100%, 580px); height: clamp(250px, 45vw, 380px); margin: 0 auto 1.75rem; border: 6px solid var(--surface); border-radius: 1.25rem; box-shadow: 0 12px 28px rgb(78 68 37 / 15%); object-fit: cover; }
 .pet-details > p { margin: 0.25rem 0; }
+.pet-notes { margin: 1.5rem auto; padding: 1.25rem 1.5rem; border-radius: 1rem; background: var(--surface); border: 1px solid var(--line); text-align: left; }
+.pet-notes h2 { margin-top: 0; font-size: 1.3rem; }
 .adopt-button { margin-top: 1.4rem; background: var(--terracotta); }
 .adopt-button:hover { background: var(--terracotta-dark); }
 
