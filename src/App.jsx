@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import PetDetails from "./pages/PetDetails";
 import MyAdoptionRequests from "./components/MyAdoptionRequests";
+import AdminDashboard from "./pages/AdminDashboard";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -17,6 +18,7 @@ export default function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/pets/:id" element={<PetDetails />} />
       <Route path="/my-adoption-requests" element={<MyAdoptionRequests />} />
+      <Route path="/admin" element={<AdminDashboard />}/>
     </Routes>
     </>
   );

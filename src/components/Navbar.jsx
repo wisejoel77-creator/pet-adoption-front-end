@@ -18,6 +18,7 @@ function Navbar() {
         <Link to="/my-adoption-requests" style={{ color: "white", textDecoration: "none" }}>My Adoption Requests </Link>
         <Link to="/login" style={{ color: "white", textDecoration: "none" }}> Login</Link>
         <Link to="/register" style={{ color: "white", textDecoration: "none" }}> Register </Link>
+        <Link to="/admin" style={{ color: "white", textDecoration: "none"}}> Admin </Link>
       </div>
     </nav>
   );
