@@ -15,8 +15,12 @@ function Home() {
       const data = await response.json();
 
       const formattedPets = data.map((user) => ({
-        id: user.id, name: user.name,
-        breed: "Unknown breed", age: 1
+        id: user.id,
+        name: user.name,
+        breed: user.breed || "Unknown breed",
+        age: user.age || "Unknown",
+        species: user.species || "pet",
+        imageUrl: user.image_url || "",
       }));
 
       setPets(formattedPets);
@@ -45,7 +49,10 @@ function Home() {
       <div className="pet-grid">
         {pets.filter((pet) => pet.name.toLowerCase().includes(search.toLowerCase()))
           .map((pet) => (
-            <PetCard id={pet.id} key={pet.id} name={pet.name} breed={pet.breed} age={pet.age}/>
+            <PetCard id={pet.id} key={pet.id} name={pet.name}
+              breed={pet.breed} age={pet.age}
+              species={pet.species} imageUrl={pet.imageUrl}
+            />
           ))}
       </div>
   </div>

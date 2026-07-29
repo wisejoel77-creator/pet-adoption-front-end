@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
 
+const petFallbackImage = "https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=900&q=80";
+
 function PetCard(props) {
   return (
     <div className="pet-card">
-     <h2>{props.name}</h2>
+      <img
+        className="pet-image"
+        src={props.imageUrl || petFallbackImage}
+        alt={`${props.name}, available for adoption`}
+        onError={(event) => { event.currentTarget.src = petFallbackImage; }}
+      />
+      <p className="pet-species">{props.species}</p>
+      <h2>{props.name}</h2>
       <p>{props.breed}</p>
       <p>Age: {props.age} years</p>
      

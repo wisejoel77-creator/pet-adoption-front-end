@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+const petFallbackImage = "https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=900&q=80";
+
 function MyAdoptionRequests() {
 
   const [requests, setRequests] = useState([]);
@@ -28,7 +30,23 @@ function MyAdoptionRequests() {
       const data = await response.json();
 
       if (response.ok) {
-        setRequests(data);
+        const requestsWithPetDetails = await Promise.all(
+          data.map(async (request) => {
+            if (request.pet?.species || request.pet_species) return request;
+
+            try {
+              const petResponse = await fetch(`http://localhost:5000/pet/${request.pet_id}`);
+              if (!petResponse.ok) return request;
+
+              const pet = await petResponse.json();
+              return { ...request, pet: { ...request.pet, ...pet } };
+            } catch {
+              return request;
+            }
+          })
+        );
+
+        setRequests(requestsWithPetDetails);
       } else {
         setError(data.error || "Failed to fetch requests");
       }
@@ -60,8 +78,15 @@ function MyAdoptionRequests() {
           <div key={request.id} className="request-card"
           >
 
+            <img
+              className="request-pet-image"
+              src={request.pet?.image_url || request.pet_image_url || request.image_url || petFallbackImage}
+              alt={`${request.pet_name || "Pet"}, your adoption request`}
+              onError={(event) => { event.currentTarget.src = petFallbackImage; }}
+            />
             <h3> Request #{request.id} </h3>
             <p> Pet ID: {request.pet_id}</p>
+            <p> Species: {request.pet?.species || request.pet_species}</p>
             <p> Status: {request.status}</p>
             <p>Notes: {request.notes} </p>
             <p> Date: {request.request_date}</p>

@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AdoptionForm from "../components/AdoptionForm";
 
+const petFallbackImage = "https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=1200&q=80";
+
 function PetDetails() {
 
   const { id } = useParams();
@@ -26,13 +28,19 @@ function PetDetails() {
   if (!pet) {return <p>Loading pet...</p>;}
 
   return (
-    <div>
+    <div className="pet-details">
 
+      <img
+        className="pet-detail-image"
+        src={pet.image_url || petFallbackImage}
+        alt={`${pet.name}, available for adoption`}
+        onError={(event) => { event.currentTarget.src = petFallbackImage; }}
+      />
       <h1>{pet.name}</h1>
       <p>Breed: {pet.breed}</p>
       <p>Age: {pet.age}</p>
 
-      <button onClick={()=> setShowForm(true)}>Adopt Me </button>
+      <button className="adopt-button" onClick={()=> setShowForm(true)}>Adopt Me 🐾</button>
       <button onClick={() => navigate(-1)}> Back</button>
       {showForm && (<AdoptionForm petId={pet.id} 
       closeForm={() => setShowForm(false)}
