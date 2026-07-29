@@ -15,9 +15,8 @@ function Navbar() {
 
       <div style={{display: "flex", gap: "20px", }}>
         <Link to="/" style={{ color: "white", textDecoration: "none" }}> Home</Link>
-
+        <Link to="/my-adoption-requests" style={{ color: "white", textDecoration: "none" }}>My Adoption Requests </Link>
         <Link to="/login" style={{ color: "white", textDecoration: "none" }}> Login</Link>
-
         <Link to="/register" style={{ color: "white", textDecoration: "none" }}> Register </Link>
       </div>
     </nav>

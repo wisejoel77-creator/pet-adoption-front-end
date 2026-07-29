@@ -11,7 +11,6 @@ function Home() {
 
   const fetchPets = async () => {
     try {
-
       const response = await fetch( "http://localhost:5000/view-all-pets" );
       const data = await response.json();
 
