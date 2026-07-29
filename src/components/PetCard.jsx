@@ -1,4 +1,4 @@
-function PetCard() {
+function PetCard(props) {
   return (
     <div
       style={{

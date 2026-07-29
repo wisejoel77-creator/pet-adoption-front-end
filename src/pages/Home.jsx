@@ -20,13 +20,13 @@ function Home() {
       <input type="text" placeholder="Search pets..." value={search}
        onChange={(event) => setSearch(event.target.value)}/>
       
-     {pets.filter((pet) =>
-    pet.name.toLowerCase().includes(search.toLowerCase()) )
-    .map((pet) => (<PetCard key={pet.id} name={pet.name} breed={pet.breed} age={pet.age}/>
-  ))}
- 
-    </div>
-  );
+      {pets.filter((pet) =>
+    pet.name.toLowerCase().includes(search.toLowerCase()))
+  .map((pet) => (
+    <PetCard key={pet.id} name={pet.name} breed={pet.breed} age={pet.age}/>
+   ))}
+  </div>
+ );
 }
 
 export default Home;
