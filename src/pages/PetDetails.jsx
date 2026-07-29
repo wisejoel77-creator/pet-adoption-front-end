@@ -32,7 +32,10 @@ function PetDetails() {
       <p>Age: {pet.age}</p>
 
       <button onClick={()=> setShowForm(true)}>Adopt Me </button>
-      {showForm && <AdoptionForm petId={pet.id} />} 
+      {showForm && (<AdoptionForm petId={pet.id} 
+      closeForm={() => setShowForm(false)}
+     />
+)}
 
     </div>
   );
