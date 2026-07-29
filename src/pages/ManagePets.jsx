@@ -50,9 +50,25 @@ async function savePet() {
         shelter_id: ""});
 
       setEditingId(null);
-
+      console.log(localStorage.getItem("token"));
       fetchPets(); } else {setError(data.Error || "Operation failed");}
   } catch { setError("Could not connect to server");}
+}
+
+function editPet(pet) {
+  setEditingId(pet.id);
+
+  setFormData({ name: pet.name || "", species: pet.species||"",
+    breed: pet.breed||"",
+    age: pet.age||"",
+    gender: pet.gender||"",
+    status: pet.status||"",
+    image_url: pet.image_url||"",
+    shelter_id: pet.shelter_id||"",
+  });
+
+  setMessage("");
+  setError("");
 }
   return(
     <div>
@@ -107,7 +123,7 @@ async function savePet() {
           <p>Status: {pet.status}</p>
         
          <div style={{ display: "flex", gap: "10px" }}>
-  <button>Edit</button>
+  <button onClick={() => editPet(pet)}>Edit</button>
   <button onClick={() => deletePet(pet.id)}
     style={{ backgroundColor: "red", color: "white",
       border: "none", padding: "8px 15px", borderRadius: "5px",
@@ -118,7 +134,6 @@ async function savePet() {
         </div>
       ))}
     </div>
-
   );
 
   function deletePet(id) {
