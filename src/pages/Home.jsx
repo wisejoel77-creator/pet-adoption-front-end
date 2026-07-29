@@ -21,6 +21,7 @@ function Home() {
         age: user.age || "Unknown",
         species: user.species || "pet",
         imageUrl: user.image_url || "",
+        status: user.status || "Status not listed",
       }));
 
       setPets(formattedPets);
@@ -52,6 +53,7 @@ function Home() {
             <PetCard id={pet.id} key={pet.id} name={pet.name}
               breed={pet.breed} age={pet.age}
               species={pet.species} imageUrl={pet.imageUrl}
+              status={pet.status}
             />
           ))}
       </div>

@@ -130,7 +130,12 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 2.5rem 0; }
   object-fit: cover;
   background: var(--surface-muted);
 }
+.pet-card-meta { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
 .pet-species { color: var(--terracotta-dark); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; margin: 0 0 0.25rem; text-transform: uppercase; }
+.adoption-status { display: inline-block; padding: 0.3rem 0.55rem; border-radius: 999px; background: var(--surface-muted); color: var(--ink); font-size: 0.74rem; font-weight: 700; white-space: nowrap; }
+.status-available { background: #dcebdc; color: #275635; }
+.status-adopted, .status-unavailable { background: #f2d9d1; color: #874334; }
+.status-pending { background: #f6e7bf; color: #775c1b; }
 .pet-card p { margin: 0.2rem 0; }
 .pet-card a { display: inline-block; margin-top: 1rem; }
 .pet-card a button { background: var(--terracotta); }
