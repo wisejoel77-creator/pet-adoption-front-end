@@ -5,8 +5,9 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   
-  function handleLogin(event) {
+  async function handleLogin(event) {
   event.preventDefault();
+
   if (email === "" || password === "") {
     setError("Please fill in all fields.");
     return;
@@ -17,10 +18,26 @@ function Login() {
     return;
   }
   setError("");
-  
-  console.log(email);
-  console.log(password);
-  alert("Login successful!");
+
+  try {
+    const response = await fetch("http://localhost:5000/auth/login", {
+      method: "POST",
+      headers: {"Content-Type": "application/json",},
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      localStorage.setItem("token", data.access_token);
+      alert("Login successful!");
+    } else {
+      setError(data.Error || "Login failed");
+    }
+
+  } catch (error) {
+    setError("Cannot connect to server");
+  }
 }
   return (
     <div>
@@ -44,7 +61,6 @@ function Login() {
   </form>
 
   <p>Email: {email}</p>
-  <p>Password: {password}</p>
 </div>
   );
 }

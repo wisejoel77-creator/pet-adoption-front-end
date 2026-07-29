@@ -11,15 +11,10 @@ function PetDetails() {
   useEffect(() => {
 
     const fetchPet = async () => {
+     const response = await fetch( `http://localhost:5000/pet/${id}` );
 
-      const response = await fetch( `https://jsonplaceholder.typicode.com/users/${id}` );
-
-      const data = await response.json();
-      const formattedPet = {
-        id: data.id, name: data.name,
-        breed: "Unknown breed", age: 1
-      };
-      setPet(formattedPet);
+     const data = await response.json();
+     setPet(data);
 
     };
 
@@ -37,7 +32,7 @@ function PetDetails() {
       <p>Age: {pet.age}</p>
 
       <button onClick={()=> setShowForm(true)}>Adopt Me </button>
-      {showForm && <AdoptionForm onSuccess={() => setShowForm(false)} />}
+      {showForm && <AdoptionForm petId={pet.id} />} 
 
     </div>
   );
