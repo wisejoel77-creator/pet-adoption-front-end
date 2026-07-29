@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import AdoptionForm from "../components/AdoptionForm";
 
 function PetDetails() {
 
@@ -34,9 +35,8 @@ function PetDetails() {
       <p>Breed: {pet.breed}</p>
       <p>Age: {pet.age}</p>
 
-      <button>
-        Adopt Me 🐾
-      </button>
+      <button>Adopt Me </button>
+      <AdoptionForm />
 
     </div>
   );
