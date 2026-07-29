@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function PetCard(props) {
   return (
     <div
@@ -11,7 +13,9 @@ function PetCard(props) {
       <p>{props.breed}</p>
       <p>Age: {props.age} years</p>
      
-      <button>View Details</button>
+      <Link to={`/pets/${props.id}`}>
+       <button>View Details</button>
+      </Link>
     </div>
   );
 }

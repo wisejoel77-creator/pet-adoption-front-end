@@ -27,11 +27,9 @@ function Home() {
     } finally {
       setLoading(false);
     }
-
   };
 
   fetchPets();
-
 }, []);
  
    return (
@@ -48,7 +46,7 @@ function Home() {
       {pets.filter((pet) =>
     pet.name.toLowerCase().includes(search.toLowerCase()))
   .map((pet) => (
-    <PetCard key={pet.id} name={pet.name} breed={pet.breed} age={pet.age}/>
+    <PetCard id={pet.id} key={pet.id} name={pet.name} breed={pet.breed} age={pet.age}/>
    ))}
   </div>
  );
