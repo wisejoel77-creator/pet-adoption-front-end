@@ -32,21 +32,22 @@ function Home() {
 }, []);
  
    return (
-    <div>
+    <div className="home-page">
 
-      <h1>Welcome to PawFound 🐾</h1>
+      <h1>Welcome to PawFound </h1>
       <p>Find your perfect pet companion.</p>
-      <h2>Pets Viewed: {count}</h2>
-      <button onClick={() => setCount(count + 1)}>View Another Pet</button>
-      <input type="text" placeholder="Search pets..." value={search}
-       onChange={(event) => setSearch(event.target.value)}/>
+      <div className="pet-tools">
+        <input type="text" placeholder="Search pets..." value={search}
+          onChange={(event) => setSearch(event.target.value)}/>
+      </div>
       
       {loading && <p>Loading pets...</p>}
-      {pets.filter((pet) =>
-    pet.name.toLowerCase().includes(search.toLowerCase()))
-  .map((pet) => (
-    <PetCard id={pet.id} key={pet.id} name={pet.name} breed={pet.breed} age={pet.age}/>
-   ))}
+      <div className="pet-grid">
+        {pets.filter((pet) => pet.name.toLowerCase().includes(search.toLowerCase()))
+          .map((pet) => (
+            <PetCard id={pet.id} key={pet.id} name={pet.name} breed={pet.breed} age={pet.age}/>
+          ))}
+      </div>
   </div>
  );
 }

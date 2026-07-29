@@ -109,9 +109,7 @@ function editPet(pet) {
       <h2>Existing Pets</h2>
 
       {pets.map((pet)=>(
-        <div key={pet.id} className="card"
-        style={{ border:"1px solid black", padding:"15px", margin:"15px",
-          borderRadius:"10px"}}>
+        <div key={pet.id} className="card">
 
           <h2>{pet.name}</h2>
           <img src={pet.image_url} alt={pet.name} width="150" />

@@ -51,9 +51,7 @@ function AdminRequests() {
       {requests.length === 0 && (<p>No adoption requests found.</p>)}
       {requests.map((request)=>(
 
-  <div key={request.id} className="card"
-    style={{border:"1px solid black",padding:"15px",
-      margin:"15px", borderRadius:"10px" }}>
+  <div key={request.id} className="card request-card">
 
     <h2>{request.pet?.name || "Unknown Pet"}</h2>
     <p> Species: {request.pet?.species || "Unknown"}</p>
