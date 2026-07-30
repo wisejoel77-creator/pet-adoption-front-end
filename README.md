@@ -1,16 +1,72 @@
-# React + Vite
+# PawFound Front End
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PawFound is a React application for browsing pets, submitting adoption requests, and managing pets, shelters, and requests as an administrator.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Browse pets with images, species, age, breed, and adoption-status badges.
+Search pets by name and open a details page with an adoption form.
+View submitted adoption requests, including the pet image and species.
+Register and log in as an adopter.
+See the currently signed-in role in the navigation and log out securely from the browser.
+Admin dashboard for managing pets, shelters, and adoption requests.
+Responsive cream, forest-green, terracotta, and gold visual theme.
 
-## React Compiler
+## Technology
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 
+- Vite
+- React Router
+- CSS
 
-## Expanding the ESLint configuration
+## Getting started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Pre-requisites
+
+- Node.js 20 or newer
+- The PawFound Flask backend running at `http://localhost:5000`
+
+### Install and run
+
+```bash
+npm install
+npm run dev
+```
+
+Open the local address shown by Vite, usually `http://localhost:5173`.
+
+## Available commands
+
+```bash
+npm run dev      # Start the development server
+npm run build    # Create a production build in dist/
+npm run preview  # Preview a production build locally
+npm run lint     # Run ESLint
+```
+
+## Authentication
+
+After a successful login, the frontend stores the backend access token in browser local storage. The navigation uses the authenticated `/auth/profile` endpoint to show the current role and only displays the Admin link to users with the `admin` role.
+
+Selecting **Log out** removes the token from local storage and returns the user to the home page. Access-token expiry is configured by the backend and is currently one hour.
+
+## Backend API
+
+The app expects the API to be available at `http://localhost:5000`. Main endpoints used include:
+
+- `GET /view-all-pets`
+- `GET /pet/:id`
+- `POST /auth/login`
+- `POST /auth/register`
+- `GET /auth/profile`
+- `GET /my-adoption-requests`
+
+## Production deployment
+
+Build the project before deployment:
+
+```bash
+npm run build
+```
+
+Vercel automatically detects Vite projects. Configure the production backend URL before deployment if your API is not hosted at `http://localhost:5000`.
