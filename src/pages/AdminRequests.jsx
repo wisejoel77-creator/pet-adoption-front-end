@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_URL } from "../config";
 
 function AdminRequests() {
 
@@ -9,7 +10,7 @@ function AdminRequests() {
   useEffect(() => {fetchRequests();}, []);
 
   function fetchRequests(){
-    fetch("http://localhost:5000/adoption-requests", {
+    fetch("https://pet-adoption-system-back-end.onrender.com/adoption-requests", {
       headers:{"Authorization": `Bearer ${localStorage.getItem("token")}`}
     })
 
@@ -23,7 +24,7 @@ function AdminRequests() {
   }
 
   function updateRequest(id, status){
-    fetch(`http://localhost:5000/adoption-request/${id}`, {
+    fetch(`https://pet-adoption-system-back-end.onrender.com/adoption-request/${id}`, {
       method:"PATCH",
       headers:{"Content-Type":"application/json",
         "Authorization": `Bearer ${localStorage.getItem("token")}`},

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_URL } from "../config";
 
 function ManagePets(){
 
@@ -15,7 +16,7 @@ function ManagePets(){
   useEffect(()=>{ fetchPets();},[]);
 
   function fetchPets(){
-    fetch("http://localhost:5000/view-all-pets")
+    fetch("https://pet-adoption-system-back-end.onrender.com/view-all-pets")
     .then(response=>response.json())
     .then(data=>{ setPets(data);})
     .catch(()=>{setError("Could not load pets");});
@@ -31,8 +32,8 @@ async function savePet() {
   const token = localStorage.getItem("token");
 
   const url = editingId
-    ? `http://localhost:5000/pet/${editingId}`
-    : "http://localhost:5000/add-pet";
+    ? `https://pet-adoption-system-back-end.onrender.com/pet/${editingId}`
+    : "https://pet-adoption-system-back-end.onrender.com/add-pet";
   const method = editingId ? "PUT" : "POST";
 
   try {
@@ -139,7 +140,7 @@ function editPet(pet) {
   function deletePet(id) {
   const token = localStorage.getItem("token");
   console.log("Token:", token);
-  fetch(`http://localhost:5000/pet/${id}`, {
+  fetch(`https://pet-adoption-system-back-end.onrender.com/pet/${id}`, {
     method: "DELETE",
     headers: {Authorization: `Bearer ${token}`, },
   })

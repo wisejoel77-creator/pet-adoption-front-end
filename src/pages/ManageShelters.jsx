@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_URL } from "../config";
 
 function ManageShelters() {
 
@@ -16,7 +17,7 @@ function ManageShelters() {
   useEffect(() => {fetchShelters();}, []);
 
   function fetchShelters(){
-    fetch("http://localhost:5000/view-all-shelters")
+    fetch("https://pet-adoption-system-back-end.onrender.com/view-all-shelters")
       .then(response => response.json())
       .then(data => setShelters(data))
       .catch(() => {
@@ -34,11 +35,11 @@ function ManageShelters() {
   function handleSubmit(event){
     event.preventDefault();
     const token = localStorage.getItem("token");
-    let url = "http://localhost:5000/add-shelter";
+    let url = "https://pet-adoption-system-back-end.onrender.com/add-shelter";
     let method = "POST";
 
     if(editingId){
-      url = `http://localhost:5000/shelter/${editingId}`;
+      url = `https://pet-adoption-system-back-end.onrender.com/shelter/${editingId}`;
       method = "PATCH";
     }
 
@@ -85,7 +86,7 @@ function ManageShelters() {
 
   function deleteShelter(id){
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:5000/shelter/${id}`,{
+    fetch(`https://pet-adoption-system-back-end.onrender.com/shelter/${id}`,{
       method:"DELETE",headers:{"Authorization": `Bearer ${token}`}
     })
 

@@ -15,7 +15,7 @@ function Navbar() {
       }
 
       try {
-        const response = await fetch("http://localhost:5000/auth/profile", {
+        const response = await fetch("https://pet-adoption-system-back-end.onrender.com/auth/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
 

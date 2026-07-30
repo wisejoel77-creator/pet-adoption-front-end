@@ -24,7 +24,7 @@ Responsive cream, forest-green, terracotta, and gold visual theme.
 ### Pre-requisites
 
 - Node.js 20 or newer
-- The PawFound Flask backend running at `http://localhost:5000`
+- The PawFound Flask backend running at `https://pet-adoption-system-back-end.onrender.com`
 
 ### Install and run
 
@@ -52,7 +52,7 @@ Selecting **Log out** removes the token from local storage and returns the user 
 
 ## Backend API
 
-The app expects the API to be available at `http://localhost:5000`. Main endpoints used include:
+The app expects the API to be available at `https://pet-adoption-system-back-end.onrender.com`. Main endpoints used include:
 
 - `GET /view-all-pets`
 - `GET /pet/:id`
@@ -69,4 +69,4 @@ Build the project before deployment:
 npm run build
 ```
 
-Vercel automatically detects Vite projects. Configure the production backend URL before deployment if your API is not hosted at `http://localhost:5000`.
+Vercel automatically detects Vite projects. Configure the production backend URL before deployment if your API is not hosted at `https://pet-adoption-system-back-end.onrender.com`.

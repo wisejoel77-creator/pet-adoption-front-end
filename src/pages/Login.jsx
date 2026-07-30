@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ function Login() {
   setError("");
 
   try {
-    const response = await fetch("http://localhost:5000/auth/login", {
+    const response = await fetch("https://pet-adoption-system-back-end.onrender.com/auth/login", {
       method: "POST",
       headers: {"Content-Type": "application/json",},
       body: JSON.stringify({ email, password }),

@@ -23,7 +23,7 @@ function MyAdoptionRequests() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/my-adoption-requests",
+      const response = await fetch("https://pet-adoption-system-back-end.onrender.com/my-adoption-requests",
         {method: "GET",headers: { Authorization: `Bearer ${token}` }}
       );
 
@@ -35,7 +35,7 @@ function MyAdoptionRequests() {
             if (request.pet?.species || request.pet_species) return request;
 
             try {
-              const petResponse = await fetch(`http://localhost:5000/pet/${request.pet_id}`);
+              const petResponse = await fetch(`https://pet-adoption-system-back-end.onrender.com/pet/${request.pet_id}`);
               if (!petResponse.ok) return request;
 
               const pet = await petResponse.json();

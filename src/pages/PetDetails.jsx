@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AdoptionForm from "../components/AdoptionForm";
+import { API_URL } from "../config";
 
 const petFallbackImage = "https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=1200&q=80";
 
@@ -15,7 +16,7 @@ function PetDetails() {
   useEffect(() => {
 
     const fetchPet = async () => {
-     const response = await fetch( `http://localhost:5000/pet/${id}` );
+     const response = await fetch( `https://pet-adoption-system-back-end.onrender.com/pet/${id}` );
      const data = await response.json();
      setPet(data);
 

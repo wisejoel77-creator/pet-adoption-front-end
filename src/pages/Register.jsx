@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_URL } from "../config";
 
 function Register() {
   const [error, setError] = useState("");
@@ -43,7 +44,7 @@ function Register() {
     setMessage("");
 
     try {
-      const response = await fetch("http://localhost:5000/auth/register", {
+      const response = await fetch("https://pet-adoption-system-back-end.onrender.com/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json", },
         body: JSON.stringify({username: formData.name,

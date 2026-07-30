@@ -1,5 +1,6 @@
 import PetCard from "../components/PetCard";
 import { useState, useEffect } from "react";
+import { API_URL } from "../config";
 
 function Home() {
     const [loading, setLoading] = useState(true);
@@ -11,7 +12,7 @@ function Home() {
 
   const fetchPets = async () => {
     try {
-      const response = await fetch( "http://localhost:5000/view-all-pets" );
+      const response = await fetch( "https://pet-adoption-system-back-end.onrender.com/view-all-pets" );
       const data = await response.json();
 
       const formattedPets = data.map((user) => ({
