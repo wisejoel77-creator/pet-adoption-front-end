@@ -61,7 +61,7 @@ function AdoptionForm({ petId }) {
   if (submitted) {
     return (
       <div className="success-card">
-        <h2>Request sent! 🐾</h2>
+        <h2>Request sent! </h2>
         <p>Your adoption request has been submitted.</p>
         <p>The shelter will review your request soon.</p>
       </div>

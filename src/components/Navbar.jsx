@@ -41,7 +41,7 @@ function Navbar() {
 
   return (
     <nav className="site-nav">
-      <Link to="/" className="brand">PawFound 🐾</Link>
+      <Link to="/" className="brand">PawFound </Link>
 
       <div className="nav-links">
         <Link to="/">Home</Link>

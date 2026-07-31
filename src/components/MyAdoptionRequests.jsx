@@ -64,7 +64,7 @@ function MyAdoptionRequests() {
 
   return (
     <div>
-      <h2>My Adoption Requests 🐾</h2>
+      <h2>My Adoption Requests </h2>
 
       {error && (<p style={{color:"red"}}>
           {error}
