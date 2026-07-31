@@ -43,12 +43,19 @@ function PetDetails() {
       <h1>{pet.name}</h1>
       <p>Breed: {pet.breed}</p>
       <p>Age: {pet.age}</p>
+      <h3>Shelter Information</h3>
+
+      <p><strong>Name:</strong> {pet.shelter?.name}</p>
+      <p><strong>Email:</strong> {pet.shelter?.email}</p>
+      <p><strong>Phone:</strong> {pet.shelter?.phone}</p>
+      <p><strong>Address:</strong> {pet.shelter?.address}</p>
+      <p><strong>City:</strong> {pet.shelter?.city}</p>
       <section className="pet-notes">
         <h2>About {pet.name}</h2>
         <p>{petNotes}</p>
       </section>
 
-      <button className="adopt-button" onClick={()=> setShowForm(true)}>Adopt Me 🐾</button>
+      <button className="adopt-button" onClick={()=> setShowForm(true)}>Adopt Me </button>
       <button onClick={() => navigate(-1)}> Back</button>
       {showForm && (<AdoptionForm petId={pet.id} 
       closeForm={() => setShowForm(false)}
