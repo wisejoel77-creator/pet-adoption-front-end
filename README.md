@@ -73,3 +73,7 @@ Vercel automatically detects Vite projects. Configure the production backend URL
 
 ## Front end deployed link
 https://pet-adoption-front-end.onrender.com/
+
+## Future improvements
+*Add a contacts section that can be viewed together with pet details. 
+*Enable users to get shelter information where a user can pick up or view their pets physically.
